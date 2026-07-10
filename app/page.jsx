@@ -4,8 +4,13 @@ import { useState } from "react";
 
 const EXAMPLE_QUESTIONS = [
   "Can I use the Kleinunternehmerregelung if I supply clients in other EU countries?",
-  "How much can I deduct for a home office if I don't have a dedicated room?",
+  "How much can I deduct for a home office without a dedicated room?",
   "When do I need to file VAT returns monthly instead of quarterly?",
+  "What must a valid invoice include under German law?",
+  "When must a business switch from cash-basis to double-entry bookkeeping?",
+  "How long do I need to keep invoices and business records?",
+  "Is a freelancer subject to trade tax in Germany?",
+  "Do I need a VAT ID if I am a Kleinunternehmer?",
   "How much inheritance tax is owed between siblings?",
 ];
 
@@ -174,20 +179,24 @@ export default function Home() {
             </div>
           </div>
 
-          {!result && !loading && !error && (
-            <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4">
+            <p className="text-xs font-mono text-ink-soft tracking-wide mb-2">
+              COMMON QUESTIONS
+            </p>
+            <div className="flex flex-wrap gap-2">
               {EXAMPLE_QUESTIONS.map((q) => (
                 <button
                   key={q}
                   type="button"
                   onClick={() => handleAsk(q)}
-                  className="text-xs text-ink-soft border border-line rounded-full px-3 py-1.5 hover:border-teal hover:text-teal transition-colors"
+                  disabled={loading}
+                  className="text-xs text-ink-soft border border-line rounded-full px-3 py-1.5 hover:border-teal hover:text-teal disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 >
                   {q}
                 </button>
               ))}
             </div>
-          )}
+          </div>
         </form>
 
         {/* Loading state */}
