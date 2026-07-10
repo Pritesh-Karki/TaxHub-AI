@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const EXAMPLE_QUESTIONS = [
   "Can I use the Kleinunternehmerregelung if I supply clients in other EU countries?",
@@ -53,6 +53,7 @@ export default function Home() {
   const [emailLoading, setEmailLoading] = useState(false);
   const [email, setEmail] = useState(null);
   const [emailOpen, setEmailOpen] = useState(false);
+  const emailRef = useRef(null);
 
   async function handleAsk(q) {
     const finalQuestion = (q ?? question).trim();
@@ -113,6 +114,9 @@ export default function Home() {
       setEmail({ error: "Could not reach the server. Try again." });
     } finally {
       setEmailLoading(false);
+      setTimeout(() => {
+        emailRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
     }
   }
 
@@ -273,7 +277,7 @@ export default function Home() {
 
             {/* Email drawer */}
             {emailOpen && (
-              <div className="drawer-content open mt-2">
+              <div ref={emailRef} className="drawer-content open mt-2">
                 <div className="drawer-inner">
                   <div className="pt-2">
                     <div className="border border-clay/30 bg-clay-soft/20 rounded-lg p-5">
