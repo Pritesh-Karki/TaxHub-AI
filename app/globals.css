@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+html,
+body {
+  background-color: #f7f4ef;
+  color: #23302b;
+}
+
+body {
+  font-family: "Public Sans", system-ui, sans-serif;
+}
+
+::selection {
+  background-color: #e8d9ce;
+  color: #1f4740;
+}
+
+/* Visible keyboard focus, kept consistent across custom controls */
+a:focus-visible,
+button:focus-visible,
+textarea:focus-visible,
+input:focus-visible {
+  outline: 2px solid #1f4740;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.drawer-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+.drawer-content.open {
+  grid-template-rows: 1fr;
+}
+
+.drawer-inner {
+  overflow: hidden;
+  min-height: 0;
+}
